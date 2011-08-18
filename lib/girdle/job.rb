@@ -77,7 +77,7 @@ module Girdle
     end
 
     def log
-      Girdle.run(job: 'log', id: id)
+      Girdle.run(job: 'log', id: id)['jobLog']
     end
 
     def stop

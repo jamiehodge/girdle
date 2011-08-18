@@ -143,8 +143,8 @@ describe Girdle::Job do
     end
 
     it 'must retrieve log' do
-      Girdle.expects(:run).with(job: 'log', id: 123).returns('log')
-      @job.log.must_equal 'log'
+      Girdle.expects(:run).with(job: 'log', id: 123).returns('jobLog' => [])
+      @job.log.must_equal []
     end
     
     describe 'status' do
