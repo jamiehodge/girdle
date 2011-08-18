@@ -35,7 +35,7 @@ describe Girdle do
     
     it 'must pipe xml to xgrid using - argument' do
       Girdle.expects(:`).
-        with('xml | /usr/bin/xgrid -hostname localhost -auth None -format xml -failover YES -autocopy YES -').
+        with('echo "xml" | /usr/bin/xgrid -hostname localhost -auth None -format xml -failover YES -autocopy YES -').
         returns(plist)
       Girdle.run_batch('xml')
     end

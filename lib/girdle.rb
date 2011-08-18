@@ -57,7 +57,7 @@ module Girdle
   
   def run_batch(xml, options = {})
     options = default_options.merge(options)
-    result = `#{xml} | #{xgrid} #{options_format(options)} -`
+    result = `echo "#{xml}" | #{xgrid} #{options_format(options)} -`
     parse(result) if $?.to_i == 0
   end
   
