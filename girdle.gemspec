@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["jamiehodge@me.com"]
   gem.description   = %q{An Xgrid client}
   gem.summary       = %q{A client for submitting and managing Xgrid jobs}
-  gem.homepage      = ''
+  gem.homepage      = 'http://github.com/jamiehodge/girdle'
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   gem.files         = `git ls-files`.split("\n")
