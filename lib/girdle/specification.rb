@@ -19,28 +19,29 @@ module Girdle
         )
         xml.plist(:version => '1.0') do
           xml.array do
-            xml.key 'name'
-            xml.string name
-            xml.key 'notificationEmail'
-            xml.string notification_email
-            xml.key 'taskSpecifications'
             xml.dict do
-              tasks.each do |task|
-                xml.key 'name'
-                xml.string task.name
-                xml.dict do
-                  xml.key 'arguments'
-                  xml.array do
-                    task.arguments.each do |argument|
-                      xml.string argument
+              xml.key 'name'
+              xml.string name
+              xml.key 'notificationEmail'
+              xml.string notification_email
+              xml.key 'taskSpecifications'
+              xml.dict do
+                tasks.each do |task|
+                  xml.key task.name
+                  xml.dict do
+                    xml.key 'arguments'
+                    xml.array do
+                      task.arguments.each do |argument|
+                        xml.string argument
+                      end
                     end
-                  end
-                  xml.key 'command'
-                  xml.string task.command
-                  xml.key 'dependsOnTasks'
-                  xml.array do
-                    task.depends_on.each do |dependency|
-                      xml.string dependency
+                    xml.key 'command'
+                    xml.string task.command
+                    xml.key 'dependsOnTasks'
+                    xml.array do
+                      task.depends_on.each do |dependency|
+                        xml.string dependency
+                      end
                     end
                   end
                 end
