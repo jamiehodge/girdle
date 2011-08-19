@@ -1,15 +1,14 @@
-require 'bundler'
+require 'bundler/setup'
+
 require 'nokogiri'
 require 'nokogiri-plist'
 
-require_relative 'girdle/version'
-
-require_relative 'girdle/task'
-require_relative 'girdle/specification'
-require_relative 'girdle/job'
-
-require_relative 'girdle/grid'
-require_relative 'girdle/controller'
+require 'girdle/version'
+require 'girdle/task'
+require 'girdle/specification'
+require 'girdle/job'
+require 'girdle/grid'
+require 'girdle/controller'
 
 module Girdle
   extend self

@@ -1,37 +1,4 @@
-require_relative '../spec_helper'
-
-def plist
-  <<-EOS
-<?xml version="1.0"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-  <array>
-    <dict>
-      <key>name</key>
-      <string>specification name</string>
-      <key>notificationEmail</key>
-      <string>email@example.com</string>
-      <key>taskSpecifications</key>
-      <dict>
-        <key>task name</key>
-        <dict>
-          <key>arguments</key>
-          <array>
-            <string>hello</string>
-          </array>
-          <key>command</key>
-          <string>/bin/echo</string>
-          <key>dependsOnTasks</key>
-          <array>
-            <string>another task</string>
-          </array>
-        </dict>
-      </dict>
-    </dict>
-  </array>
-</plist>
-  EOS
-end
+require 'spec_helper'
 
 describe Girdle::Specification do
   
@@ -63,6 +30,36 @@ describe Girdle::Specification do
   end
   
   it 'must render itself as a plist' do
+    plist = <<-EOS
+<?xml version="1.0"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <array>
+    <dict>
+      <key>name</key>
+      <string>specification name</string>
+      <key>notificationEmail</key>
+      <string>email@example.com</string>
+      <key>taskSpecifications</key>
+      <dict>
+        <key>task name</key>
+        <dict>
+          <key>arguments</key>
+          <array>
+            <string>hello</string>
+          </array>
+          <key>command</key>
+          <string>/bin/echo</string>
+          <key>dependsOnTasks</key>
+          <array>
+            <string>another task</string>
+          </array>
+        </dict>
+      </dict>
+    </dict>
+  </array>
+</plist>
+    EOS
     @spec.to_plist.must_equal plist
   end
   
