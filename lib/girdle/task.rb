@@ -8,7 +8,7 @@ module Girdle
       @name       = options[:name]
       @command    = options[:command]
       @arguments  = options[:arguments]
-      @depends_on = options[:depends_on]
+      @depends_on = options[:depends_on] || []
     end
 
   end
