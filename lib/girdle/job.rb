@@ -25,7 +25,7 @@ module Girdle
     end
 
     def attributes
-      @attributes ||= Girdle.run(job: 'attributes', id: id)['jobAttributes']
+      Girdle.run(job: 'attributes', id: id)['jobAttributes']
     end
     
     def active_cpu_power
