@@ -27,7 +27,7 @@ Add another, this one dependent on the first:
     
 Submit the specification and return an id:
 
-    job_id = Girdle::Job.batch(spec.to_plist)
+    job_id = Girdle::Job.batch(spec)
     
 Create a new job using the returned id:
 
