@@ -13,6 +13,7 @@ describe Girdle::Task do
     task.command.must_equal '/bin/echo'
     task.arguments.must_equal []
     task.depends_on.must_equal []
+    task.environment.must_equal Hash.new
   end
   
   

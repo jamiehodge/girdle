@@ -2,12 +2,13 @@ module Girdle
   
   class Specification
     
-    attr_accessor :name, :notification_email, :tasks
+    attr_accessor :name, :notification_email, :tasks, :depends_on
     
     def initialize(options = {})
       @name = options[:name]
       @notification_email = options[:notification_email]
       @tasks = options[:tasks] || []
+      @depends_on = options[:depends_on] || []
     end
     
     def to_plist
@@ -24,6 +25,15 @@ module Girdle
               xml.string name
               xml.key 'notificationEmail'
               xml.string notification_email
+              xml.key 'schedulerParameters'
+              xml.dict do
+                xml.key 'dependsOnJobs'
+                xml.array do
+                  depends_on.each do |dependency|
+                    xml.string dependency
+                  end
+                end
+              end
               xml.key 'taskSpecifications'
               xml.dict do
                 tasks.each do |task|
@@ -37,6 +47,13 @@ module Girdle
                     end
                     xml.key 'command'
                     xml.string task.command
+                    xml.key 'environment'
+                    xml.dict do
+                      task.environment.each do |k,v|
+                        xml.key k
+                        xml.string v
+                      end
+                    end
                     xml.key 'dependsOnTasks'
                     xml.array do
                       task.depends_on.each do |dependency|

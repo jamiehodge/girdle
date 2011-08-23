@@ -11,9 +11,13 @@ describe Girdle::Specification do
           name: 'task name', 
           command: '/bin/echo', 
           arguments: ['hello'], 
-          depends_on: ['another task']
+          depends_on: ['another task'],
+          environment: {'MY_ENV_VARIABLE' => 'MY_VALUE'}
         )
-      ]
+      ],
+      depends_on: [
+        'another specification name'
+        ]
     )
   end
   
@@ -40,6 +44,13 @@ describe Girdle::Specification do
       <string>specification name</string>
       <key>notificationEmail</key>
       <string>email@example.com</string>
+      <key>schedulerParameters</key>
+      <dict>
+        <key>dependsOnJobs</key>
+        <array>
+          <string>another specification name</string>
+        </array>
+      </dict>
       <key>taskSpecifications</key>
       <dict>
         <key>task name</key>
@@ -50,6 +61,11 @@ describe Girdle::Specification do
           </array>
           <key>command</key>
           <string>/bin/echo</string>
+          <key>environment</key>
+          <dict>
+            <key>MY_ENV_VARIABLE</key>
+            <string>MY_VALUE</string>
+          </dict>
           <key>dependsOnTasks</key>
           <array>
             <string>another task</string>
