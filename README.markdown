@@ -1,7 +1,8 @@
 Girdle
 =======
 
-A client for submitting and managing Xgrid jobs.
+A client for submitting and managing [Xgrid](http://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man1/xgrid.1.html) jobs.
+
 
 Installation
 ------------
@@ -13,7 +14,9 @@ Usage
 
 Create a job specification:
 
-    spec = Girdle::Specification.new(name: 'example_spec', notification_email: 'admin@example.com')
+    spec = Girdle::Specification.new(name: 'example_spec', 
+                                     notification_email: 'admin@example.com',
+                                     depends_on: [456,789])
     
 Add a task:
 
@@ -23,7 +26,9 @@ Add a task:
 Add another, this one dependent on the first:
 
     spec.tasks << Girdle::Task.new(name: 'world', command: '/usr/bin/say', 
-                                   arguments: ['world'], depends_on: ['hello'])
+                                   arguments: ['$PLACE_NAME'], 
+                                   depends_on: ['hello'], 
+                                   environment: {'PLACE_NAME' => 'world'})
     
 Submit the specification and return an id:
 
