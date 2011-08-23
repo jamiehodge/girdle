@@ -3,6 +3,8 @@ require 'bundler/setup'
 require 'nokogiri'
 require 'nokogiri-plist'
 
+require 'girdle/helpers'
+
 require 'girdle/version'
 require 'girdle/task'
 require 'girdle/specification'

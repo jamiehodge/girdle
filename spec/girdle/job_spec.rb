@@ -22,25 +22,34 @@ describe Girdle::Job do
       result.must_equal 'hello'
     end
 
-    it 'must submit batch file and return an id' do
-      plist = Girdle::Specification.new(
-        name: 'specification name',
-        notification_email: 'email@example.com',
-        tasks: [
-          Girdle::Task.new(
-            name: 'task name', 
-            command: '/bin/echo', 
-            arguments: ['hello'], 
-            depends_on: ['another task']
-          )
-        ]
-      ).to_plist
-      Girdle.expects(:run_batch).
-        with(plist, job: 'batch').
-        returns('jobIdentifier' => '123')
-      id = Girdle::Job.batch(plist)
-      id.must_equal '123'
+    describe '::batch' do
+      
+      before do
+        @plist = Girdle::Specification.new(
+          name: 'specification name',
+          notification_email: 'email@example.com',
+          tasks: [
+            Girdle::Task.new(
+              name: 'task name', 
+              command: '/bin/echo', 
+              arguments: ['hello'], 
+              depends_on: ['another task']
+            )
+          ]
+        )
+      end
+      
+      it 'must submit batch file and return an id' do
+        Girdle.expects(:run_batch).
+          with(@plist.to_plist, job: 'batch').
+          returns('jobIdentifier' => '123')
+        id = Girdle::Job.batch(@plist)
+        id.must_equal '123'
+      end
+      
     end
+    
+    
   end
   
   it 'must retrieve list of jobs' do
@@ -145,6 +154,11 @@ describe Girdle::Job do
     it 'must retrieve log' do
       Girdle.expects(:run).with(job: 'log', id: 123).returns('jobLog' => [])
       @job.log.must_equal []
+    end
+    
+    it 'must wait synchronously until job state changes' do
+      Girdle.expects(:run).with(job: 'wait', id: 123).returns('jobStatus' => 'finished')
+      @job.wait.must_equal 'finished'
     end
     
     describe 'status' do
