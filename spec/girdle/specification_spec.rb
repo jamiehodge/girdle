@@ -15,9 +15,7 @@ describe Girdle::Specification do
           environment: {'MY_ENV_VARIABLE' => 'MY_VALUE'}
         )
       ],
-      depends_on: [
-        'another specification name'
-        ]
+      depends_on: [456, 789]
     )
   end
   
@@ -48,7 +46,8 @@ describe Girdle::Specification do
       <dict>
         <key>dependsOnJobs</key>
         <array>
-          <string>another specification name</string>
+          <string>456</string>
+          <string>789</string>
         </array>
       </dict>
       <key>taskSpecifications</key>
