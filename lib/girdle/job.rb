@@ -76,7 +76,12 @@ module Girdle
     end
 
     def attributes
-      Girdle.run(job: 'attributes', id: id)['jobAttributes']
+      @attributes ||= Girdle.run(job: 'attributes', id: id)['jobAttributes']
+    end
+    
+    def attributes!
+      @attributes = nil
+      attributes
     end
     
     def active_cpu_power

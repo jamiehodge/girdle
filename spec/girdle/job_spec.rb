@@ -88,6 +88,8 @@ describe Girdle::Job do
         @job.attributes.must_equal @attributes
       end
       
+      it 'must cache attributes'
+      
       it 'must retrieve active cpu power' do
         @job.expects(:attributes).returns(@attributes)
         @job.active_cpu_power.must_equal 0
