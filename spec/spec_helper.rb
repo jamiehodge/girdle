@@ -1,6 +1,4 @@
 require 'minitest/autorun'
 
 require 'bundler'
-Bundler.require(:development)
-
-require 'girdle'
+Bundler.require(:default, :development)
