@@ -11,6 +11,10 @@ module Girdle
       @depends_on   = options[:depends_on] || []
       @environment  = options[:environment] || {}
     end
+    
+    def to_s
+      @name
+    end
 
   end
   
