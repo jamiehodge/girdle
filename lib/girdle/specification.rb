@@ -42,7 +42,7 @@ module Girdle
                     xml.key 'arguments'
                     xml.array do
                       task.arguments.each do |argument|
-                        xml.string argument.to_s
+                        xml.string argument
                       end
                     end
                     xml.key 'command'
@@ -57,7 +57,7 @@ module Girdle
                     xml.key 'dependsOnTasks'
                     xml.array do
                       task.depends_on.each do |dependency|
-                        xml.string dependency.to_s
+                        xml.string dependency
                       end
                     end
                   end
