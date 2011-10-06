@@ -16,19 +16,21 @@ Create a job specification:
 
     spec = Girdle::Specification.new(name: 'example_spec', 
                                      notification_email: 'admin@example.com',
-                                     depends_on: [456,789])
+                                     depends_on: [another_spec])
     
 Add a task:
 
-    spec.tasks << Girdle::Task.new(name: 'hello', command: '/usr/bin/say', 
+    a_task = Girdle::Task.new(name: 'hello', command: '/usr/bin/say', 
                                    arguments: ['hello'])
+    spec.tasks << a_task
     
 Add another, this one dependent on the first:
 
-    spec.tasks << Girdle::Task.new(name: 'world', command: '/usr/bin/say', 
+    another_task = Girdle::Task.new(name: 'world', command: '/usr/bin/say', 
                                    arguments: ['$PLACE_NAME'], 
-                                   depends_on: ['hello'], 
+                                   depends_on: [ a_task ], 
                                    environment: {'PLACE_NAME' => 'world'})
+    spec.tasks << another_task
     
 Submit the specification and return an id:
 

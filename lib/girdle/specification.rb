@@ -8,7 +8,8 @@ module Girdle
       @name = options[:name]
       @notification_email = options[:notification_email]
       @tasks = options[:tasks] || []
-      @depends_on = options[:depends_on] || []
+      @depends_on = (options[:depends_on] || []).
+        map {|d| d.respond_to?(:name) ? d.name : d}
     end
     
     def to_plist
@@ -68,6 +69,13 @@ module Girdle
         end
       end.to_xml
     end
+    
+    private
+    
+      def parse_dependencies(dependencies)
+        dependencies ||= []
+        dependencies.select {|d| d.respond_to? :name}.map(&:name)
+      end
     
   end
   
