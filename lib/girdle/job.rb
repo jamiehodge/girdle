@@ -134,7 +134,7 @@ module Girdle
         
       options.merge!(job: 'results', id: id)
         
-      Girdle.run(options)
+      Girdle.run_redirect(options).gsub /^$\n/, ''
     end
 
     def specification

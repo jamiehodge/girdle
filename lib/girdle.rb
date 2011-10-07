@@ -63,6 +63,11 @@ module Girdle
     parse(result) if $?.to_i == 0
   end
   
+  def run_redirect(options = {})
+    options = default_options.merge(options)
+    `#{xgrid} #{options_format(options)} 2>&1`
+  end
+  
   private
   
     def options_format(options)
