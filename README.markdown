@@ -53,7 +53,9 @@ Control its state:
     
 Review its task log:
     
-    job.log
+    log = job.log
+    log.first.message
+    log.first.time
     
 View its results:
     

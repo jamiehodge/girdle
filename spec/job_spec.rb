@@ -154,8 +154,12 @@ describe Girdle::Job do
     end
 
     it 'must retrieve log' do
-      Girdle.expects(:run).with(job: 'log', id: 123).returns('jobLog' => [])
-      @job.log.must_equal []
+      Girdle.expects(:run).with(job: 'log', id: 123).
+        returns('jobLog' => [{message: 'message', time: 'time'}])
+      log = @job.log.first
+      log.must_be_kind_of Girdle::LogEntry
+      log.message.must_equal 'message'
+      log.time.must_equal 'time'
     end
     
     it 'must wait synchronously until job state changes' do

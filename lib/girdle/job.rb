@@ -142,7 +142,8 @@ module Girdle
     end
 
     def log
-      Girdle.run(job: 'log', id: id)['jobLog']
+      Girdle.run(job: 'log', id: id)['jobLog'].
+        map {|log| Girdle::LogEntry.new(log) }
     end
     
     def wait
