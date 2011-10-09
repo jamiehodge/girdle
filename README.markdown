@@ -15,8 +15,7 @@ Usage
 Create a job specification:
 
     spec = Girdle::Specification.new(name: 'example_spec', 
-                                     notification_email: 'admin@example.com',
-                                     depends_on: [another_spec])
+                                     notification_email: 'admin@example.com')
     
 Add a task:
 
@@ -27,9 +26,8 @@ Add a task:
 Add another, this one dependent on the first:
 
     another_task = Girdle::Task.new(name: 'world', command: '/usr/bin/say', 
-                                   arguments: ['$PLACE_NAME'], 
-                                   depends_on: [ a_task ], 
-                                   environment: {'PLACE_NAME' => 'world'})
+                                   arguments: ['world'], 
+                                   depends_on: [ a_task ])
     spec.tasks << another_task
     
 Submit the specification and return an id:
