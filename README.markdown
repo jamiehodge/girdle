@@ -19,15 +19,17 @@ Create a job specification:
     
 Add a task:
 
-    a_task = Girdle::Task.new(name: 'hello', command: '/usr/bin/say', 
-                                   arguments: ['hello'])
+    a_task = Girdle::Task.new(name: 'hello', 
+                              command: '/usr/bin/say', 
+                              arguments: ['hello'])
     spec.tasks << a_task
     
 Add another, this one dependent on the first:
 
-    another_task = Girdle::Task.new(name: 'world', command: '/usr/bin/say', 
-                                   arguments: ['world'], 
-                                   depends_on: [ a_task ])
+    another_task = Girdle::Task.new(name: 'world', 
+                                    command: '/usr/bin/say', 
+                                    arguments: ['world'], 
+                                    depends_on: [ a_task ])
     spec.tasks << another_task
     
 Submit the specification and return an id:
