@@ -70,13 +70,6 @@ module Girdle
       end.to_xml
     end
     
-    private
-    
-      def parse_dependencies(dependencies)
-        dependencies ||= []
-        dependencies.select {|d| d.respond_to? :name}.map(&:name)
-      end
-    
   end
   
 end
