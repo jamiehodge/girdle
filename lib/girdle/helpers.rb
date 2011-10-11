@@ -1,5 +1,4 @@
 module Girdle
-  
   module Helpers
     extend self
     
