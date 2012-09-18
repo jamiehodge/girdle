@@ -60,12 +60,12 @@ module Girdle
   def run_batch(xml, options = {})
     options = default_options.merge(options)
     result = `echo "#{xml}" | #{xgrid} #{options_format(options)} -`
-    parse(result.encode('utf-8')) if $?.to_i == 0
+    parse(result.force_encoding('utf-8')) if $?.to_i == 0
   end
   
   def run_redirect(options = {})
     options = default_options.merge(options)
-    `#{xgrid} #{options_format(options)} 2>&1`.encode('utf-8')
+    `#{xgrid} #{options_format(options)} 2>&1`.force_encoding('utf-8')
   end
   
   private
