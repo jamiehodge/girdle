@@ -16,10 +16,6 @@ Gem::Specification.new do |gem|
   gem.version       = Girdle::VERSION
   
   gem.add_development_dependency 'bundler'
-  gem.add_development_dependency 'guard'
-  gem.add_development_dependency 'guard-minitest'
-  gem.add_development_dependency 'rb-fsevent'
-  gem.add_development_dependency 'growl_notify'
   gem.add_development_dependency 'mocha'
   
   gem.add_dependency 'nokogiri'
